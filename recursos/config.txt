@@ -1,0 +1,11 @@
+﻿-ciudades (Nombre de la ciudad, Id de la ciudad)
+Bogota,0
+Caracas,1
+Quito,2
+Buenos Aires,3
+-ruta (Origen, Destino, Distancia entre ciudades)
+0,1,158
+0,2,256
+0,3,237
+1,3,784
+1,2,359
