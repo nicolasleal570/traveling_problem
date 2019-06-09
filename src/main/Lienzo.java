@@ -18,6 +18,8 @@ public class Lienzo extends JPanel {
     private ArrayList<Arista> enlaces;
     private Grafo graph;
 
+    private int[][] mAdy;
+
     private String rutaFile;
     private JFileChooser seleccionado = new JFileChooser();
     private File archivo;
@@ -52,9 +54,10 @@ public class Lienzo extends JPanel {
         archivo = FileLoader.archivo;
 
         armarGrafo();
-        
+        llenarMatrizAdyacencia();
     }
 
+    /* ARMA EL GRAFO CON LAS CONEXIONES DEPENDE DEL TXT */
     public void armarGrafo() {
 
         String[] categoria = rutaFile.split("-");
@@ -64,6 +67,7 @@ public class Lienzo extends JPanel {
 
     }
 
+    /* LEE EL ARCHIVO TXT Y RECUPERA LAS CIUDADES */
     public ArrayList<Ciudad> cargarCiudadesTxt(String cat) {
         ArrayList<Ciudad> r = new ArrayList<>();
 
@@ -79,6 +83,7 @@ public class Lienzo extends JPanel {
         return r;
     }
 
+    /* CREA LOS ENLACES ENTRE CIUDADES */
     public void cargarEnlacesTxt(String cat, Grafo g) {
 
         if (cat != null) {
@@ -97,6 +102,26 @@ public class Lienzo extends JPanel {
         }
     }
 
+    /* LLENA LA MATRIZ DE ADYACENCIA CON LAS DISTANCIAS ENTRE CIUDADES */
+    private void llenarMatrizAdyacencia() {
+        mAdy = new int[ciudades.size() + 1][ciudades.size() + 1];
+        for (int i = 0; i < graph.getGraphEstructura().length; i++) {
+            for (int j = 0; j < graph.getGraphEstructura()[i].size(); j++) {
+
+                if (!graph.getGraphEstructura()[i].isEmpty()) {
+
+                    int idOrigen = i;
+                    int idDestino = graph.getGraphEstructura()[i].get(j).getVertice();
+
+                    mAdy[idOrigen + 1][idDestino + 1] = graph.getGraphEstructura()[i].get(j).getDistancia(); // Accediendo a todos los valores de la lista enlazada
+
+                }
+            }
+
+        }
+    }
+
+    /* GETTERS Y SETTERS */
     public ArrayList<Ciudad> getCiudades() {
         return ciudades;
     }

@@ -1,17 +1,21 @@
 package ventanas;
 
+import main.AntTSP;
 import main.Lienzo;
 
 public class Simulacion extends javax.swing.JFrame {
 
     private Lienzo lienzo;
+    private AntTSP anttsp;
     
     public Simulacion(Lienzo lienzo) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.lienzo = lienzo;
+        anttsp = new AntTSP();
     }
 
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
